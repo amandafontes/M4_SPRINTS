@@ -6,7 +6,7 @@
 #define ledVermelho 4
 #define botao1 19
 #define botao2 20
-#define ldr 21
+#define ldr 14
 #define buzzer 2
 
 int binario[4]; // Variável que armazena os 4 dígitos que compõem o número convertido para binário
@@ -39,28 +39,28 @@ void setup() {
 
 void leds() {
 
-  if (binario[0] == 0) { // Posição 0, referente ao LED verde
-      digitalWrite(ledVerde, LOW); // Impõe estado "low" ao LED, portanto, ele permanece apagado
+  if (binario[0] == 0) { // Posição 0, referente ao LED vermelho
+      digitalWrite(ledVermelho, LOW); // Impõe estado "low" ao LED, portanto, ele permanece apagado
     } else {
-      digitalWrite(ledVerde, HIGH); // Impõe estado "low" ao LED, portanto, ele permanece aceso
+      digitalWrite(ledVermelho, HIGH); // Impõe estado "low" ao LED, portanto, ele permanece aceso
     }
 
-    if (binario[1] == 0) { // Posição 1, referente ao LED amarelo
-      digitalWrite(ledAmarelo, LOW);
-    } else {
-      digitalWrite(ledAmarelo, HIGH);
-    }
-
-    if (binario[2] == 0) { // Posição 2, referente ao LED azul
+    if (binario[1] == 0) { // Posição 1, referente ao LED azul
       digitalWrite(ledAzul, LOW);
     } else {
       digitalWrite(ledAzul, HIGH);
     }
 
-    if (binario[3] == 0) { // Posição 3, referente ao LED vermelho
-      digitalWrite(ledVermelho, LOW);
+    if (binario[2] == 0) { // Posição 2, referente ao LED amarelo
+      digitalWrite(ledAmarelo, LOW);
     } else {
-      digitalWrite(ledVermelho, HIGH);
+      digitalWrite(ledAmarelo, HIGH);
+    }
+
+    if (binario[3] == 0) { // Posição 3, referente ao LED verde
+      digitalWrite(ledVerde, LOW);
+    } else {
+      digitalWrite(ledVerde, HIGH);
     }
 }
 
@@ -110,14 +110,14 @@ void loop() {
     tone(buzzer, frequencias[x]*100, 350); // O comando "tone" faz com que o buzzer emita o som relativo a cada frequência armazenada
     Serial.println(frequencias[x]); // Aqui, estamos exibindo, no Serial Monitor, cada posição armazenada em "frequencias" (valores que podem variar de 0 a 15)
     x += 1; // A cada vez que o botão é apertado, será exibido o próximo valor de x, ou seja, a próxima posição da lista "frequencias"
-    delay(50); // Aqui, colocamos um delay de 50 milissegundos para que os LEDs acendam em concordância com a emissão do buzzer
+    delay(100); // Aqui, colocamos um delay de 100 milissegundos para que os LEDs acendam em concordância com a emissão do buzzer
   }
 
   if (digitalRead(botao2) == LOW) { // Quando o segundo botão for pressionado é que entrará em funcionamento o "instrumento musical"
   // O objetivo é que o buzzer emita sons de todas as frequências armazenadas na lista, sequencialmente e em sincronia com os LEDs
 
     while (x >= 0) { // Loop para emitir todos os sons enquanto são percorridos os elementos da lista "frequencias"
-      tone(buzzer, frequencias[x]*100, 350); // Comando para acionar o buzzer na frequência relativa a cada posição da lista
+      tone(buzzer, frequencias[x]*100, 200); // Comando para acionar o buzzer na frequência relativa a cada posição da lista
       converter(frequencias[x]); // Conversão realizada para, novamente, transformar em número binário cada valor compreendido no intervalo de 0 a 15
       delay(500); // Delay de 500 milissegundos para que haja sincronia entre os sons emitidos e os LEDs
       leds(); // Novamente, é chamada a função "leds", de modo que eles acendam ou apaguem de acordo com o número binário encontrado para cada leitura do LDR
@@ -127,5 +127,5 @@ void loop() {
       x = x-1; // Para a continuação do loop. Indica que todos os elementos de "frequencias" serão percorridos, de modo que o buzzer emita todos os sons em concordância com os LEDs
     }
   }
-  delay(50); // Novamente, inserimos um delay para evitar possíveis falhas de sincronia
+  delay(100); // Novamente, inserimos um delay para evitar possíveis falhas de sincronia
 }
