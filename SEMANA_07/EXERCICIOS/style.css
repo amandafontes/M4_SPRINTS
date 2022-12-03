@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    font-family: 'Source Code Pro', monospace;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+h1 {
+    padding-bottom: 50px;
+    text-align: center;
+}
+
+hr {
+    font-weight: bold;
+    height: 3px;
+    background: black;
+    margin-bottom: 10px;
+}
+
+.jogadorAtual {
+    text-align: center;
+    padding-top: 35px;
+}
+
+.game {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.game button {
+    width: 100px;
+    height: 100px;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+    cursor: pointer;
+    font-size: 50px;
+    background: white;
+}
+
+#botao1 {
+    border-top: #ffffff;
+    border-left: #ffffff;
+}
+
+#botao2 {
+    border-top: #ffffff;
+}
+
+#botao3 {
+    border-top: #ffffff;
+    border-right: #ffffff;
+}
+
+#botao4 {
+    border-left: #ffffff;
+}
+
+#botao6 {
+    border-right: #ffffff;
+}
+
+#botao7 {
+    border-left: #ffffff;
+    border-bottom: #ffffff;
+}
+
+#botao8 {
+    border-bottom: #ffffff;
+}
+
+#botao9 {
+    border-right: #ffffff;
+    border-bottom: #ffffff;
+}
